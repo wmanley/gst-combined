@@ -1,3 +1,0 @@
-[submodule "gst-libs/ext/libav"]
-        path = gst-libs/ext/libav
-        url = git://source.ffmpeg.org/ffmpeg.git
