@@ -448,8 +448,6 @@ dnl po/Makefile.in
 AC_CONFIG_FILES(
 Makefile
 ges/ges-version.h
-common/Makefile
-common/m4/Makefile
 gst-editing-services.spec
 m4/Makefile
 ges/Makefile

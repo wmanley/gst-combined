@@ -8,19 +8,21 @@ endif
 
 SUBDIRS = 		\
 	gst \
-	common \
 	pkgconfig \
 	docs \
 	$(SUBDIRS_EXAMPLES) \
 	tests
 
-DIST_SUBDIRS = gst common pkgconfig docs examples tests
+DIST_SUBDIRS = gst pkgconfig docs examples tests
+
+include $(top_srcdir)/common/common-distfiles.mak
 
 EXTRA_DIST = \
 	ChangeLog autogen.sh depcomp \
 	AUTHORS COPYING NEWS README RELEASE REQUIREMENTS \
 	gst-rtsp.spec docs/design/gst-rtp-server-design \
-	gst-rtsp-server.doap
+	gst-rtsp-server.doap \
+	$(COMMON_DISTFILES)
 
 ACLOCAL_AMFLAGS = -I m4 -I common/m4
 

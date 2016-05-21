@@ -6,7 +6,7 @@ else
 SUBDIRS_TESTS =
 endif
 
-SUBDIRS = gst-libs gst $(SUBDIRS_TESTS) m4 common docs
+SUBDIRS = gst-libs gst $(SUBDIRS_TESTS) m4 docs
 
 DISTCHECK_CONFIGURE_FLAGS=--enable-gtk-doc
 
@@ -18,8 +18,11 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/autoregen.sh $(srcdir)/INSTALL	\
 	$(NULL)
 
+include $(top_srcdir)/common/common-distfiles.mak
+
 EXTRA_DIST = \
 	configure.ac autogen.sh \
-	gstreamer-vaapi.doap
+	gstreamer-vaapi.doap \
+	$(COMMON_DISTFILES)
 
 -include $(top_srcdir)/git.mk

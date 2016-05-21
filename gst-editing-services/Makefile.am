@@ -6,17 +6,19 @@ else
 EXAMPLES_SUBDIRS=
 endif
 
-SUBDIRS = ges tests tools common m4 pkgconfig docs bindings plugins $(EXAMPLES_SUBDIRS)
+SUBDIRS = ges tests tools m4 pkgconfig docs bindings plugins $(EXAMPLES_SUBDIRS)
 
 DIST_SUBDIRS = $(SUBDIRS)
 
 # include before EXTRA_DIST for win32 assignment
 #include $(top_srcdir)/common/win32.mak
+include $(top_srcdir)/common/common-distfiles.mak
 
 EXTRA_DIST = \
 	gst-editing-services.spec depcomp \
 	AUTHORS COPYING NEWS README RELEASE \
-	ChangeLog autogen.sh gst-editing-services.doap
+	ChangeLog autogen.sh gst-editing-services.doap \
+	$(COMMON_DISTFILES)
 
 DISTCLEANFILES = _stdint.h
 

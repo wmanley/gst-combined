@@ -1065,8 +1065,6 @@ tests/examples/spectrum/Makefile
 tests/examples/v4l2/Makefile
 tests/files/Makefile
 tests/icles/Makefile
-common/Makefile
-common/m4/Makefile
 m4/Makefile
 docs/Makefile
 docs/plugins/Makefile

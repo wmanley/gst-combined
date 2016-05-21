@@ -930,8 +930,6 @@ docs/libs/Makefile
 docs/plugins/Makefile
 docs/version.entities
 po/Makefile.in
-common/Makefile
-common/m4/Makefile
 m4/Makefile
 )
 

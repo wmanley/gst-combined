@@ -5,7 +5,6 @@ ALWAYS_SUBDIRS =		\
 	tests			\
 	docs			\
 	po			\
-	common			\
 	m4			\
 	pkgconfig
 
@@ -15,12 +14,14 @@ DIST_SUBDIRS = $(ALWAYS_SUBDIRS)
 
 # include before EXTRA_DIST for win32 assignment
 include $(top_srcdir)/common/win32.mak
+include $(top_srcdir)/common/common-distfiles.mak
 
 EXTRA_DIST = \
 	gst-plugins-good.spec depcomp \
 	AUTHORS COPYING NEWS README RELEASE REQUIREMENTS \
 	ChangeLog gst-plugins-good.doap autogen.sh \
-	$(win32)
+	$(win32) \
+	$(COMMON_DISTFILES)
 
 DISTCLEANFILES = _stdint.h
 

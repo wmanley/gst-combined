@@ -1015,8 +1015,6 @@ tests/examples/ptp/Makefile
 tests/examples/streamiddemux/Makefile
 tests/examples/streams/Makefile
 tools/Makefile
-common/Makefile
-common/m4/Makefile
 docs/Makefile
 docs/design/Makefile
 docs/faq/Makefile

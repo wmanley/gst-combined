@@ -476,8 +476,6 @@ AM_CONDITIONAL(HAVE_LIBAV_UNINSTALLED, test x$HAVE_LIBAV_UNINSTALLED = x1)
 
 AC_CONFIG_FILES(
 Makefile
-common/Makefile
-common/m4/Makefile
 gst-libav.spec
 ext/Makefile
 ext/libav/Makefile

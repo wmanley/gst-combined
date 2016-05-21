@@ -452,8 +452,6 @@ dnl *** output files ***
 
 AC_CONFIG_FILES(
 Makefile
-common/Makefile
-common/m4/Makefile
 gst-libs/Makefile
 gst-libs/gst/Makefile
 gst/Makefile

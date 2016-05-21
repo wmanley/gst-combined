@@ -1,12 +1,15 @@
 DISTCHECK_CONFIGURE_FLAGS=--enable-gtk-doc
 
-COMMON_SUBDIRS = ext docs common tests
+COMMON_SUBDIRS = ext docs tests
 SUBDIRS = $(LIBAV_SUBDIRS) $(COMMON_SUBDIRS) pkgconfig
 DIST_SUBDIRS = $(COMMON_SUBDIRS) gst-libs pkgconfig
 
+include $(top_srcdir)/common/common-distfiles.mak
+
 EXTRA_DIST = \
 	gst-libav.spec depcomp autogen.sh \
-	AUTHORS COPYING NEWS README ChangeLog gst-libav.doap
+	AUTHORS COPYING NEWS README ChangeLog gst-libav.doap \
+	$(COMMON_DISTFILES)
 ACLOCAL_AMFLAGS = -I m4 -I common/m4
 
 include $(top_srcdir)/common/release.mak

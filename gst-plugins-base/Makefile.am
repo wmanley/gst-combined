@@ -14,7 +14,6 @@ SUBDIRS = 			\
 	tests 			\
 	docs			\
 	po 			\
-	common 			\
 	m4
 
 DIST_SUBDIRS = 			\
@@ -25,16 +24,17 @@ DIST_SUBDIRS = 			\
 	tools 			\
 	tests 			\
 	po 			\
-	common 			\
 	m4
 
 # include before EXTRA_DIST for win32 assignment
 include $(top_srcdir)/common/win32.mak
+include $(top_srcdir)/common/common-distfiles.mak
 
 EXTRA_DIST = \
 	gst-plugins-base.spec depcomp \
 	AUTHORS COPYING COPYING.LIB NEWS README RELEASE REQUIREMENTS \
-	ChangeLog gst-plugins-base.doap autogen.sh $(win32)
+	ChangeLog gst-plugins-base.doap autogen.sh $(win32) \
+	$(COMMON_DISTFILES)
 
 DISTCLEANFILES = _stdint.h
 

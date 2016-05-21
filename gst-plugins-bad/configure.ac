@@ -3516,8 +3516,6 @@ dnl po/Makefile.in
 
 AC_CONFIG_FILES(
 Makefile
-common/Makefile
-common/m4/Makefile
 gst-plugins-bad.spec
 gst/Makefile
 gst/accurip/Makefile

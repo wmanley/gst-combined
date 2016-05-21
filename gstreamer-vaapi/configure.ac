@@ -977,8 +977,6 @@ AC_DEFINE_UNQUOTED([GST_VAAPI_MAJOR_VERSION_S], ["0"],
 
 AC_CONFIG_FILES([
     Makefile
-    common/Makefile
-    common/m4/Makefile
     m4/Makefile
     docs/Makefile
     docs/version.entities

@@ -11,7 +11,6 @@ SUBDIRS = pkgconfig \
 	docs \
 	po \
 	m4 \
-	common \
 	data
 
 if BUILD_TOOLS
@@ -24,11 +23,11 @@ DIST_SUBDIRS = pkgconfig \
 	docs \
 	po \
 	m4 \
-	common \
 	data
 
 # include before EXTRA_DIST for win32 assignment
 include $(top_srcdir)/common/win32.mak
+include $(top_srcdir)/common/common-distfiles.mak
 
 EXTRA_DIST = \
 	gstreamer.spec gstreamer.spec.in \
@@ -36,7 +35,8 @@ EXTRA_DIST = \
 	configure.ac autogen.sh depcomp \
 	MAINTAINERS ABOUT-NLS RELEASE gstreamer.doap \
 	scripts/gst-uninstalled \
-	$(win32)
+	$(win32) \
+	$(COMMON_DISTFILES)
 
 CLEANFILES = gst-element-check-@GST_API_VERSION@.m4
 

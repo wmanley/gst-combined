@@ -2,20 +2,22 @@ DISTCHECK_CONFIGURE_FLAGS=--enable-gtk-doc
 
 SUBDIRS = \
 	gst-libs gst sys ext pkgconfig \
-	m4 common docs tests po tools
+	m4 docs tests po tools
 
 DIST_SUBDIRS = \
 	gst gst-libs sys ext pkgconfig \
-	m4 common docs tests po tools
+	m4 docs tests po tools
 
 # include before EXTRA_DIST for win32 assignment
 include $(top_srcdir)/common/win32.mak
+include $(top_srcdir)/common/common-distfiles.mak
 
 EXTRA_DIST = \
 	gst-plugins-bad.spec depcomp \
 	AUTHORS COPYING NEWS README RELEASE REQUIREMENTS \
 	ChangeLog gst-plugins-bad.doap autogen.sh \
-	$(win32)
+	$(win32) \
+	$(COMMON_DISTFILES)
 
 DISTCLEANFILES = _stdint.h
 
