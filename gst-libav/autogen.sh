@@ -16,14 +16,6 @@ cd "$srcdir"
 package=gst-libav
 srcfile=gst-libav.doap
 
-# Make sure we have common
-if test ! -f common/gst-autogen.sh;
-then
-  echo "+ Setting up common submodule"
-  git submodule init
-fi
-git submodule update
-
 # source helper functions
 if test ! -f common/gst-autogen.sh;
 then
