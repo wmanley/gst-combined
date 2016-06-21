@@ -1,0 +1,83 @@
+#!/usr/bin/python
+
+import argparse
+import pipes
+import sys
+from cStringIO import StringIO
+from textwrap import dedent
+
+makefile = StringIO()
+configure_flags = [None]
+
+
+def main(argv):
+    configure_flags[0] = " ".join(pipes.quote(x) for x in argv[1:])
+    overwrite(".configureflags.mk", "CONFIGURE_FLAGS=%s\n" % configure_flags[0])
+
+    makefile.write(dedent("""
+        all:
+
+        Makefile : configure
+        \t./configure {configure_flags}
+
+        gst-uninstalled.mk : gstreamer/scripts/gst-uninstalled
+        \tgstreamer/scripts/gst-uninstalled --generate=makefile >gst-uninstalled.mk
+
+        include gst-uninstalled.mk
+        """).format(configure_flags=configure_flags[0]))
+
+    module("gst-devtools/codecanalyzer", deps=[
+        "gst-plugins-base", "gst-plugins-bad"])
+#    module("gst-devtools/mediainfo", deps=["gst-plugins-base"])
+#    module("gst-devtools/validate", deps=["gst-plugins-base"])
+    module("gst-editing-services", deps=["gst-plugins-base"])
+    module("gst-libav", deps=["gst-plugins-base"])
+    module("gst-plugins-bad", deps=["gst-plugins-base"])
+    module("gst-plugins-base", deps=["gstreamer"])
+    module("gst-plugins-good", deps=["gst-plugins-base"])
+    module("gst-plugins-ugly", deps=["gst-plugins-base"])
+    module("gstreamer")
+    module("gstreamer-vaapi", deps=["gst-plugins-base"])
+    module("gst-rtsp-server", deps=["gst-plugins-base"])
+
+    overwrite("Makefile", makefile.getvalue())
+
+
+def overwrite(filename, contents):
+    try:
+        with open(filename) as f:
+            oldcontents = f.read()
+    except IOError:
+        oldcontents = None
+
+    if oldcontents != contents:
+        with open(filename, 'w') as f:
+            f.write(contents)
+
+
+def module(name, deps=None):
+    if deps is None:
+        deps = []
+    makefile.write(dedent("""
+        {name}/configure:
+        \tcd {name} && NOCONFIGURE=1 ./autogen.sh
+
+        {name}/Makefile: {name}/configure .configureflags.mk | {configure_deps}
+        \tcd {name} && ./configure {configure_flags}
+
+        build-{name}: {name}/Makefile
+        \t$(MAKE) -C {name}
+
+        dist-{name}: build-{name}
+        \t$(MAKE) -C {name} dist
+
+        dist: dist-{name}
+
+        all: build-{name}
+        """
+        .format(name=name,
+                configure_deps=" ".join("build-%s" % x for x in deps),
+                configure_flags=configure_flags[0])))
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
