@@ -3,8 +3,8 @@ import sys
 import os
 import subprocess
 
-# This server-side pre-receive hook is to be put and activated in all modules
-# that depend on the common submodule.
+# This server-side pre-receive hook is to be put and activated in the gstreamer
+# repo.
 
 def commit_in_valid_branch(sha):
     sub = subprocess.Popen(["git", "branch", "--contains", sha],

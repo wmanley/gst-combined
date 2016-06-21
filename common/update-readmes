@@ -3,7 +3,7 @@
 # update-readmes
 #
 # Updates a module's README and MAINTAINERS files from the copy in the
-# common submodule.
+# common.
 
 README_FILES="README README.static-linking MAINTAINERS"
 
