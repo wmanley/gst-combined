@@ -17,6 +17,9 @@ def main(argv):
     makefile.write(dedent("""
         all:
 
+        test: all
+        \ttrue
+
         Makefile : configure
         \t./configure {configure_flags}
 
