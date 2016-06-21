@@ -52,9 +52,19 @@ else
 fi
 
 GST_PREFIX=$GST/prefix
-if test ! -e $GST; then
-  echo "$GST does not exist !"
-  exit
+if test ! -e $GST && [ "$1" != "--generate=makefile" ]; then
+  echo "$GST does not exist !" 2>&1
+  exit 1
+fi
+
+if [ $1 = "--generate=makefile" ]; then
+  GST='$(CURDIR)'
+  LD_LIBRARY_PATH='$(LD_LIBRARY_PATH)'
+  DYLD_LIBRARY_PATH='$(DYLD_LIBRARY_PATH)'
+  GI_TYPELIB_PATH='$(GI_TYPELIB_PATH)'
+  PKG_CONFIG_PATH='$(PKG_CONFIG_PATH)'
+  GST_PLUGIN_PATH='$(GST_PLUGIN_PATH)'
+  GST_PRESET_PATH='$(GST_PRESET_PATH)'
 fi
 
 # set up a bunch of paths
@@ -237,6 +247,18 @@ if [ -d "$GST/gst-libav" -a -d "$GST/gst-ffmpeg" ]; then
 	 since gst-libav replaces gst-ffmpeg."
 	====================================================================="
 	EOF
+fi
+
+if [ "$1" = "--generate=makefile" ]; then
+  for x in LD_LIBRARY_PATH PKG_CONFIG_PATH DYLD_LIBRARY_PATH PYTHONPATH \
+           GST_REGISTRY GST_PLUGIN_SCANNER GST_PTP_HELPER \
+           GST_PLUGIN_SYSTEM_PATH GST_PRESET_PATH GST_PLUGIN_PATH \
+           GI_TYPELIB_PATH MONO_PATH GST_VALIDATE_SCENARIOS_PATH \
+           GST_VALIDATE_APPS_DIR GST_VALIDATE_PLUGIN_PATH;
+  do
+    echo export $x := ${!x}
+  done
+  exit 0
 fi
 
 # if we got a command, run it, else start a shell
