@@ -227,16 +227,16 @@ export GST_VALIDATE_APPS_DIR=$GST_VALIDATE_APPS_DIR:$GST/gst-editing-services/te
 export GST_VALIDATE_PLUGIN_PATH=$GST_VALIDATE_PLUGIN_PATH:$GST/gst-devtools/validate/plugins/
 
 if [ -d "$GST/gst-libav" -a -d "$GST/gst-ffmpeg" ]; then
-  echo
-  echo "====================================================================="
-  echo " You have both an uninstalled gst-ffmpeg checkout and a gst-libav"
-  echo " checkout. You need to remove one of those. You should remove"
-  echo
-  echo "   $GST/gst-ffmpeg"
-  echo
-  echo " since gst-libav replaces gst-ffmpeg."
-  echo "====================================================================="
-  echo
+  cat 1>&2 <<-EOF
+	====================================================================="
+	 You have both an uninstalled gst-ffmpeg checkout and a gst-libav"
+	 checkout. You need to remove one of those. You should remove"
+
+	   $GST/gst-ffmpeg"
+
+	 since gst-libav replaces gst-ffmpeg."
+	====================================================================="
+	EOF
 fi
 
 # if we got a command, run it, else start a shell
