@@ -40,7 +40,7 @@ GIT_ACCESS="anongit"
 REUSE_EXISTING_MASTER_CHECKOUT="true"
 
 # git modules to clone
-MODULES="gstreamer gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-bad gst-libav"
+MODULES="gstreamer"
 
 # note: we use ~/gst because that's what the gst-uninstalled script
 # uses by default, so don't just change that to something else
